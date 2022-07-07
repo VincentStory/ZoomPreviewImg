@@ -15,3 +15,33 @@
 * 8.支持GIF显示。
 
 apk下载地址：链接: https://pan.baidu.com/s/1-JxFPsSjoJxps2dBBj9aDQ 提取码: gddy 
+
+使用方式：
+
+1.在app的gradle里面依赖这两个库
+```
+    implementation 'com.ycjiang:ImagePreview:2.3.7'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+```
+
+2.创建一个类TestImageLoader 实现 IZoomMediaLoader 接口
+
+3.在自己的Application里面初始化ZoomMediaLoader
+```
+public class App extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        ZoomMediaLoader.getInstance().init(new TestImageLoader());
+    }
+}
+```
+4.使用
+```
+ GPreviewBuilder.from(MainActivity.this)
+                    .setSingleData(new UserViewInfo(mPath1))
+                    .setCurrentIndex(0)
+                    .isDisableDrag(true)
+                    .setSingleShowType(false)
+                    .start();
+```
